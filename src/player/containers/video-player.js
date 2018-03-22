@@ -6,12 +6,15 @@ import PlayPause from '../components/play-pause'
 import Timer from '../components/timer'
 import Controls from '../components/video-player-contronls'
 import {formattedTime} from '../../utilities.js'
+import ProgressBar from '../components/progress-bar.js';
 class VideoPlayer extends Component {
     
     state= {
         pause: true,
         duration: 0,
-        currentTime: 0
+        currentTime: 0,
+        timeFloat: 0,
+        durationFloat: 0
      }
 
     togglePlay= (event) =>{   
@@ -29,15 +32,22 @@ class VideoPlayer extends Component {
     handleLoadedMetada = event =>{
         this.video = event.target
         this.setState({
-            duration: formattedTime(this.video.duration)
+            duration: formattedTime(this.video.duration),
+            durationFloat: this.video.duration
         })
     }
     handleTimeUpdate = event =>{
-        
         this.setState({
-            currentTime: formattedTime(this.video.currentTime)
+            currentTime: formattedTime(this.video.currentTime),
+            timeFloat: this.video.currentTime
         })
     }
+
+    handleProgressChange= event =>{
+        
+       this.video.currentTime = event.target.value //setea el valor del video al valor que tenga el progressBar
+    }                                               //en caso de que el usuario genere el evento de cambio del pb
+
     render(){
         return(
                     <VideoPlayerLayout>
@@ -53,7 +63,11 @@ class VideoPlayer extends Component {
                             duration ={this.state.duration}
                             currentTime = {this.state.currentTime}
                         />
-                        
+                        <ProgressBar
+                         duration = {this.state.durationFloat}
+                         value = {this.state.timeFloat}
+                         handleProgressChange = {this.handleProgressChange}
+                        />
                         </Controls>
                        
                        <Video
