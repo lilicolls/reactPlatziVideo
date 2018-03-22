@@ -12,7 +12,10 @@ import './video-player-layout.css'
 
 function VideoPlayerLayout(props) {
     return(
-            <div className ="VideoPlayer">
+            <div 
+            ref={props.setRef}    
+            className ="VideoPlayer"
+            >
                 {props.children}
             </div>
         )
