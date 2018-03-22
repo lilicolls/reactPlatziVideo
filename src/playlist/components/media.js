@@ -25,13 +25,14 @@ class Media extends PureComponent {
     author: 'Liliana Colls'
   }
 
-  // handleClick = (ev) => {           //usando arrow function para hacer el bind de this de manera automatica 
-  //                                   // las arrow function heredan el scope
-  //   this.setState({
-  //     author: 'liliana Colls'
+  handleClick = (ev) => {           //usando arrow function para hacer el bind de this de manera automatica 
+                                    // las arrow function heredan el scope
+    // this.setState({
+    //   author: 'liliana Colls'
 
-  //   })
-  // }
+    // })
+    this.props.openModal(this.props);
+  }
 
 
   render() {
@@ -46,7 +47,7 @@ class Media extends PureComponent {
 
     return (
       //<div style= {styles.container}>
-      <div className= "Media" onClick = {this.props.handleClick}>
+      <div className= "Media" onClick = {this.handleClick}>
         <div className="Media-cover">
           <img className = "Media-image"
             src={this.props.cover}
