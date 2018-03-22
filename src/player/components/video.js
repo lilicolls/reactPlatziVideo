@@ -20,7 +20,9 @@ class Video extends Component {
     render(){
         const {
             handleLoadedMetada,
-            handleTimeUpdate
+            handleTimeUpdate,
+            handleSeeking,
+            handleSeeked
         } = this.props
 
         return(
@@ -31,6 +33,9 @@ class Video extends Component {
                     ref = {this.setRef}
                     onLoadedMetadata = {handleLoadedMetada}
                     onTimeUpdate = {handleTimeUpdate}
+                    onSeeking = {handleSeeking} //evento que se dispara cuando el video se esta moviendo
+                    onSeeked = {handleSeeked} //ya se movió
+
                 />
             </div>
             )
